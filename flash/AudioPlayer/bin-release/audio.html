@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>sewise播放器</title>
+		<script charset="utf-8" type="text/javascript" language="JavaScript" src="./swfobject.js"></script>
+		<script language="JavaScript" charset="utf-8" type="text/javascript">
+			var SewisePlayer;
+			var flashvars = {
+				autoStart        : 'false',
+				videoUrl         : 'test.mp3',
+				volume           : '0.6'
+			};
+			var params = {
+				allowfullscreen   : true,
+				wmode             : "transparent",
+				allowscriptaccess : 'always'
+			};
+			var attributes = {
+				id : 'sewise_x_player',
+				name : 'sewise_x_player'
+			};
+			window.onload = function() {
+				swfobject.embedSWF("AudioPlayer.swf", "swf-container", "0%", "0%", "9.0.115", false, flashvars, params, attributes);
+			}
+			
+			
+			//接口调用方法
+			function startPlay(){
+				SewisePlayer.doPlay();
+			}
+			function playPause(){
+				SewisePlayer.doPause();
+			}
+			function seekTo(){
+				SewisePlayer.doSeek(5);
+			}
+			function changeVolume(){
+				SewisePlayer.setVolume(0.3);
+			}
+			function getDuration(){
+				alert(SewisePlayer.duration());
+			}
+			function getPlayTime(){
+				alert(SewisePlayer.playTime());
+			}
+			
+			
+			//回调方法
+			function playerReady(name){
+				SewisePlayer = document.getElementById("sewise_x_player");
+
+				console.log("playerReady");
+			}
+			function onStart(name){
+		        console.log("onStart");
+			}
+			function onPause(name){
+				console.log("onPause");
+			}
+			function onSeek(time, name){
+				console.log("onSeek: " + time);
+			}
+			function onMetadata(meta, name){
+				console.log(meta);
+			}
+			function onPlayTime(time, name){
+				console.log("onPlayTime: " + time);
+			}
+
+			function onLoadOpen(name){
+		        console.log("onLoadOpen");
+			}
+			function onLoadProgress(pt, name){
+		        console.log("progress: " + pt);
+			}
+			function onLoadCompleted(name){
+		        console.log("onLoadCompleted");
+			}
+			function onLoadError(name){
+		        console.log("onLoadError");
+			}
+			function onPlayEnd(name){
+		        console.log("onPlayEnd");
+			}
+
+		</script>
+	</head>
+	<body>
+		<div style="width: 600px;height: 400px;">
+			<div id="swf-container">
+				加载播放器......
+			</div>
+			<div style="padding-top: 20px;">
+				<div style="padding-right: 20px;float: left;">[控制接口]</div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:startPlay();">播放</a></div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:playPause();">暂停</a></div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:seekTo();">跳转</a></div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:changeVolume();">更改音量</a></div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:getDuration();">获取总时长</a></div>
+				<div style="padding-right: 20px;float: left;"><a href="javascript:getPlayTime();">获取当前时间</a></div>
+				
+				<br clear="all"/>
+			</div>
+		</div>
+	</body>
+</html>
