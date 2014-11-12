@@ -96,16 +96,19 @@ package com.sewise{
 		}
 		private function id3InfoHandler(e:Event):void
 		{
-			var info:ID3Info = e.target.id3;
-			var metaData:Object = new Object();
-			metaData.name = info.songName;
-			metaData.artist = info.artist;
-			
-			if(ExternalInterface.available)
-			{
-				ExternalInterface.call("onMetadata", JSON.stringify(metaData), ExternalInterface.objectID);
+			try{
+				var info:ID3Info = e.target.id3;
+				var metaData:Object = new Object();
+				metaData.name = info.songName;
+				metaData.artist = info.artist;
+				
+				if(ExternalInterface.available)
+				{
+					ExternalInterface.call("onMetadata", JSON.stringify(metaData), ExternalInterface.objectID);
+				}
+			}catch(e:Error){
+				
 			}
-			
 			//trace(name + " : " + artist);
 		}
 		private function loadErrorHandler(event:Event):void
@@ -192,7 +195,9 @@ package com.sewise{
 		}
 		public function setVolume(volume:Number):void
 		{
-			soundChannel.soundTransform = new SoundTransform(volume);
+			if(soundChannel){
+				soundChannel.soundTransform = new SoundTransform(volume);
+			}
 			defVolume = volume;
 		}
 		public function duration():Number {

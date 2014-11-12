@@ -15,12 +15,16 @@ package
 	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.system.Security;
 	
 	public class AudioPlayer extends Sprite
 	{
 		private var music:Music;
 		public function AudioPlayer()
 		{
+			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
+			
 			var params:Params = new Params(this.root.loaderInfo.parameters);
 			music = new Music(params.soundURL, params.defVolume, params.autoStart);
 			

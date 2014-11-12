@@ -8,8 +8,8 @@
 		<script language="JavaScript" charset="utf-8" type="text/javascript">
 			var SewisePlayer;
 			var flashvars = {
-				autoStart        : 'false',
-				videoUrl         : 'test.mp3',
+				autoStart        : 'true',
+				videoUrl         : 'http://192.168.1.24:80/data/userdata/vod/resource/201410/9zz3B4e3.mp3',
 				volume           : '0.6'
 			};
 			var params = {
@@ -22,7 +22,7 @@
 				name : 'sewise_x_player'
 			};
 			window.onload = function() {
-				swfobject.embedSWF("AudioPlayer.swf", "swf-container", "0%", "0%", "9.0.115", false, flashvars, params, attributes);
+				swfobject.embedSWF("AudioPlayer.swf", "swf-container", "1", "1", "9.0.115", false, flashvars, params, attributes);
 			}
 			
 			
